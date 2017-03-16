@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>IFE JavaScript Task 02</title>
+  </head>
+<body>
+  <h3>污染城市列表</h3>
+  <p>请输入aqi最小值</p>
+  <input type="text" id="minAqi" value="60">
+  <p>您输入的值是：<span id = "demo"></span></p>
+  <button onClick="displayAqi()">显示列表</button>
+  <ul id="aqi-list">
+  </ul> 
+<script type="text/javascript">
+  /*
+  在注释下方编写代码
+  遍历读取aqiData中各个城市的数据
+  将空气质量指数大于60的城市显示到aqi-list的列表中
+  */
+var aqiData = [
+  ["北京", 90],
+  ["上海", 50],
+  ["福州", 10],
+  ["广州", 50],
+  ["成都", 90],
+  ["西安", 100]
+];
+
+function displayAqi() {
+var minAqi = document.getElementById("minAqi").value;//获取文本的值 不能只获取元素
+demo.innerHTML=minAqi;
+aqiData.sort(function (x,y){
+return y[1]-x[1]});
+var ul = document.getElementById("aqi-list");
+var n = 1 ;  
+  for(var i=0;i<aqiData.length;i++){
+  if(aqiData[i][1]>=minAqi){
+  var li = document.createElement("li");
+  var text = document.createTextNode("第"+n+"名:"+aqiData[i]);
+  li.appendChild(text);
+  ul.appendChild(li);
+  n++
+  }
+  }
+}
+</script>
+</body>
+</html>
